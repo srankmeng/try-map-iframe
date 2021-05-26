@@ -1,0 +1,24 @@
+{
+  "name": "sub-iframe1",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt --port 3004",
+    "dev:3005": "nuxt --port 3005",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/pwa": "^3.3.5",
+    "bulma": "^0.9.2",
+    "core-js": "^3.9.1",
+    "mobile-device-detect": "^0.4.3",
+    "nuxt": "^2.15.3",
+    "vue2-google-maps": "^0.10.7"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.3"
+  }
+}

@@ -1,0 +1,36 @@
+// //////////////////////////////////////////////////////////////////////////////////////////////////
+// ==================================================================================================
+//
+// Scaffolding
+// - Overwrite html style from Bulma and others
+//
+// ==================================================================================================
+// //////////////////////////////////////////////////////////////////////////////////////////////////
+
+@import '~assets/styleguides/styleguides';
+
+html {
+  overflow-y: auto;
+}
+
+body {
+  touch-action: manipulation; // Fix double tab to zoom in iOS
+  font-family: $font-family-primary;
+  font-size: 14px;
+  font-weight: normal;
+  color: $color-black;
+  line-height: $line-height-primary;
+}
+
+// Force display 'inline-block' to <nuxt-link>
+a {
+  &[href^="/"] {
+    display: inline-block;
+  }
+}
+
+* {
+  &:active {
+    -webkit-tap-highlight-color: transparent;
+  }
+}

@@ -1,0 +1,174 @@
+// //////////////////////////////////////////////////////////////////////////////////////////////////
+// ==================================================================================================
+//
+// Color
+// - Base
+// - Brand
+// - State
+// - Specific
+// - Gray
+// - Red
+// - Green
+// - Blue
+// - Orange
+// - Pink
+// - Purple
+// - Gradient
+// - Alpha
+// ==================================================================================================
+// //////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Base
+// ============================================================
+$color-black: #000000;
+$color-white: #FFFFFF;
+
+// Brand
+// ============================================================
+$color-primary-1: #002865;
+$color-primary-2: #00CCFF;
+$color-primary-3: #7FE5FF;
+$color-primary-4: #0D336D;
+
+// Gray
+// ============================================================
+$color-gray-1: #CFD5DE;
+$color-gray-2: #8091AA;
+$color-gray-3: #F8F9FC;
+$color-gray-4: #D8D8D8;
+$color-gray-5: #979797;
+$color-gray-6: #DADADA;
+
+// Red
+// ============================================================
+$color-red-1: #CA1822;
+$color-red-2: #EE2224;
+
+// Green
+// ============================================================
+$color-green-1: #439638;
+$color-green-2: #EDF5EC;
+$color-green-3: #439638;
+$color-green-4: #28871C;
+$color-green-5: #06E7B6;
+
+// Blue
+// ============================================================
+$color-blue-1: #8398B4; // Primary 50%
+$color-blue-2: #E6EAF0; // Primary 10%
+$color-blue-3: #06BAE7;
+$color-blue-4: #DAE0E8;
+$color-blue-5: #8094B2;
+$color-blue-6: #A0AFC5;
+$color-blue-7: #56CCF2;
+$color-blue-8: #7C91B0;
+$color-blue-9: #CFD7E2; // Primary 10% + Primary 10%
+$color-blue-10: #DCF0FF;
+$color-blue-11: #06A1FB;
+$color-blue-12: #99A9C1; // Primary 40%
+$color-blue-13: #CCF5FF;
+$color-blue-14: #43B2E1;
+$color-blue-15: #335384;
+
+// Orange
+// ============================================================
+$color-orange-1: #FE9900;
+
+// Pink
+// ============================================================
+$color-pink-1: #DE5CC1;
+
+// Specific
+// ============================================================
+$color-disabled: $color-gray-1;
+$color-success: $color-green-1;
+$color-error: $color-red-1;
+$color-warning: $color-orange-1;
+$color-placeholder: $color-blue-8;
+
+// Chart colors
+// ============================================================
+$color-chart-blue-1: #0066EC;
+$color-chart-blue-2: #1967DF;
+$color-chart-blue-3: #3B9FFF;
+$color-chart-blue-4: #00B2F6;
+$color-chart-blue-5: #42DEF9;
+$color-chart-blue-6: #A7FEFA;
+$color-chart-orange-1: #FF731C;
+$color-chart-orange-2: #EA8417;
+$color-chart-orange-3: #FFA421;
+$color-chart-orange-4: #FA9C4C;
+$color-chart-orange-5: #FAE339;
+$color-chart-orange-6: #F6DC4C;
+$color-chart-orange-7: #FEE5A3;
+$color-chart-purple-1: #AA2EFA;
+$color-chart-purple-2: #DD5DC1;
+$color-chart-purple-3: #7A59BF;
+$color-chart-green-1: #76C64C;
+
+// Background
+// ============================================================
+@mixin bg-gradient-1() {
+  background: rgb(2, 30, 74);
+  background: linear-gradient(180deg, rgba(2, 30, 74, 0.9) 0%, rgba(3, 53, 131, 0.9) 50%, rgba(0, 22, 56, 0.9) 100%);
+}
+
+@mixin bg-gradient-2() {
+  background: rgb(0, 40, 101);
+  background: linear-gradient(180deg, rgba(0, 40, 101, 1) 0%, rgba(0, 40, 101, 0) 100%);
+}
+
+@mixin bg-gradient-3() {
+  background: rgb(6,186,231);
+  background: linear-gradient(0deg, rgba(6,186,231,1) 0%, rgba(0,204,255,1) 100%);
+}
+
+@mixin bg-gradient-4() {
+  background: rgb(232,107,205);
+  background: linear-gradient(90deg, rgba(232,107,205,1) 0%, rgba(214,83,185,1) 100%);
+}
+
+@mixin bg-gradient-5() {
+  background: rgb(1,157,250);
+  background: linear-gradient(90deg, rgba(1,157,250,1) 0%, rgba(31,187,252,1) 100%);
+}
+
+@mixin bg-gradient-6() {
+  background: rgb(31,233,189);
+  background: linear-gradient(-180deg, rgba(31,233,189,1) 0%, rgba(1,156,250,1) 100%);
+}
+
+@mixin bg-gradient-7() {
+  background: rgb(0,204,255);
+  background: linear-gradient(90deg, rgba(0,204,255,1) 0%, rgba(0,150,255,1) 100%);
+}
+
+@mixin bg-gradient-8() {
+  background: rgb(0,84,213);
+  background: linear-gradient(90deg, rgba(0,84,213,1) 0%, rgba(0,116,255,1) 100%);
+}
+
+@mixin bg-gradient-9() {
+  background: rgb(6,186,231);
+  background: linear-gradient(45deg, rgba(6,186,231,1) 0%, rgba(0,204,255,1) 100%);
+}
+
+// Aplha
+// ============================================================
+$color-alpha-1: rgba(0, 17, 43, 0.5);
+$color-alpha-2: rgba(0, 40, 101, 0.3);
+$color-alpha-3: rgba(255, 255, 255, 0.2);
+$color-alpha-4: rgba(0, 204, 255, 0.1);
+$color-alpha-5: rgba(6, 186, 231, 0.2);
+$color-alpha-6: rgba(0, 40, 101, 0.9);
+$color-alpha-7: rgba(0, 40, 101, 0.75);
+$color-alpha-8: rgba(0, 0, 0, 0.75);
+$color-alpha-9: rgba(0, 40, 101, 0.1);
+$color-alpha-10: rgba(0, 40, 101, 0.25);
+$color-alpha-11: rgba(202, 24, 34, 0.82);
+$color-alpha-12: rgba(202, 24, 34, 0.69);
+$color-alpha-13: rgba(254, 153, 0, 0.69);
+$color-alpha-14: rgba(151, 151, 151, 0.69);
+$color-alpha-15: rgba(67, 150, 56, 0.69);
+$color-alpha-16: rgba(0, 40, 101, 0.2);
+$color-alpha-17: rgba(255, 255, 255, 0.5);

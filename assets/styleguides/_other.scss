@@ -1,0 +1,144 @@
+// //////////////////////////////////////////////////////////////////////////////////////////////////
+// ==================================================================================================
+//
+// Other
+// - Z Index
+// - Media query
+// - Size
+// - Global
+// - Mixin
+//
+// ==================================================================================================
+// //////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Z Index
+// ============================================================
+$z-index-1:      1;
+$z-index-9:      9;
+$z-index-10:     10;
+$z-index-11:     11;
+$z-index-99:     99;
+$z-index-100:    100;
+$z-index-101:    101;
+$z-index-999:    999;
+$z-index-1000:   1000;
+$z-index-1001:   1001;
+$z-index-9999:   9999;
+$z-index-10000:  10000;
+$z-index-10001:  10001;
+
+// Media query
+// Other breakpoints eg 480px, 600px, 960px, 1600px, 2560px
+// ============================================================
+$media-query-mobile:            320px;
+$media-query-android:           360px;
+$media-query-iphone:            375px;
+$media-query-iphone-large:      414px;
+$media-query-tablet-portrait:   768px;
+$media-query-tablet-landscape:  1024px;
+$media-query-laptop:            1280px;
+$media-query-desktop:           1366px;
+$media-query-large-desktop:     1440px;
+
+// Size
+// ============================================================
+$button-height: 40px;
+$button-extra-small-height: 30px;
+$button-small-height: 45px;
+$button-medium-height: 50px;
+$button-large-height: 60px;
+$button-extra-large-height: 80px;
+$input-height: 45px;
+$input-small-height: 40px;
+$input-large-height: 60px;
+$modal-width: 580px;
+$modal-medium-width: 790px;
+$modal-large-width: 1300px;
+$modal-report-month-picker-width: 450px;
+$modal-filter-checkboxs-width: 275px;
+$select-height: 45px;
+$select-small-height: 40px;
+$select-medium-height: 50px;
+$select-large-height: 60px;
+$select-language-height: 18px;
+$site-content-width: 1220px;
+$site-content-small-width: 1120px;
+$site-content-medium-width: 1175px;
+$checkbox-size: 20px;
+$navigation-bar-height: 90px;
+$navigation-bar-small-height: 60px;
+$action-bar-height: 75px;
+$filter-side-width: 275px;
+
+// Global
+// ============================================================
+$global-border-radius: 5px;
+$global-transition: all 0.3s ease;
+$global-route-transition: all 0.3s ease;
+
+// Mixin
+// ============================================================
+@mixin site-wrapper() {
+  @media (max-width: 1250px) {
+    padding: 0 15px;
+  }
+}
+
+@mixin site-content() {
+  max-width: $site-content-width;
+  margin: 0 auto;
+}
+
+@mixin section-content() {
+  padding: 25px 0 105px;
+
+  @media (max-width: 1023px) {
+    padding: 15px 0 30px;
+  }
+}
+
+@mixin scrollbar-overlay() {
+  overflow: overlay;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-primary-1;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover{
+    background: $color-primary-1;
+  }
+
+  &::-webkit-scrollbar-track{
+    background: $color-blue-2;
+    border-radius: 3px;
+  }
+}
+
+@mixin scrollbar-square-overlay() {
+  overflow: overlay;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-gray-4;
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar-thumb:hover{
+    background: $color-gray-4;
+  }
+
+  &::-webkit-scrollbar-track{
+    background: $color-gray-3;
+    border-radius: 0;
+  }
+}
