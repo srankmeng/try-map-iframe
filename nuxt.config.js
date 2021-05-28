@@ -15,6 +15,10 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap' },
+    ],
+    script: [
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js', type: 'text/javascript' },
+      { src: 'https://cdn.jsdelivr.net/npm/canvas2image@1.0.5/canvas2image.js', type: 'text/javascript' },
     ]
   },
 
