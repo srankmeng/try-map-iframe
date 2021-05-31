@@ -1,11 +1,10 @@
 <template>
   <div>
-    <div id="map" ref="map">
+    <div id="map">
       <GoogleMap>
           <GoogleMapArea :areas="areaList" />
         </GoogleMap>
     </div>
-    <div id="map-img"></div>
   </div>
 
 </template>
@@ -28,6 +27,7 @@
     data() {
       return {
         areaList: [],
+        iframeId: '',
       }
     },
     methods: {
@@ -36,29 +36,34 @@
         if(data.areaList) {
           // to do
           this.areaList = data.areaList;
+          this.iframeId = data.iframeId;
           console.log('sub iframe1 area map: ', data.areaList);
-
-          if(data.isImage) {
-            this.convertasbinaryimage();
-          }
+        }
+        if(data.isGenerateImage) {
+          this.convertasbinaryimage();
         }
       },
       convertasbinaryimage() {
-        setTimeout(function () {
-          html2canvas(document.getElementById('map'), {
-            useCORS: true,
-            onrendered: function (canvas) {
-              let img = canvas.toDataURL('image/png');
-              img = img.replace('data:image/png;base64,', '');
-              const finalImageSrc = 'data:image/png;base64,' + img;
+        const el = document.getElementById('map');
+        const self = this
 
-              const imageTag = document.createElement('img');
-              imageTag.setAttribute('src', finalImageSrc);
-              document.getElementById('map-img').appendChild(imageTag);
-              document.getElementById('map').style.display = 'none';
-            }
-          });
-        }, 5000);
+        html2canvas(el, {
+          useCORS: true,
+          onrendered: function (canvas) {
+            let img = canvas.toDataURL('image/png');
+            img = img.replace('data:image/png;base64,', '');
+            const finalImageSrc = 'data:image/png;base64,' + img;
+            el.style.display = 'none';
+
+            // send image url to parent
+            const message = JSON.stringify({
+              imageUrl: finalImageSrc,
+              iframeId: self.iframeId,
+            });
+            window.parent.postMessage(message, '*');
+          }
+        });
+
       },
     },
 
