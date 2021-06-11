@@ -38,8 +38,8 @@
             'strokeColor': '#FFFFFF',
             'strokeOpacity': 1,
             'strokeWeight': 1,
-            'fillColor': `rgba(0, 40, 101, ${mapOpacity[index]})`,
-            'fillOpacity': area && area.value ? area.value : 0,
+            'fillColor': mapColor[area.value],
+            'fillOpacity': 1,
           }"
         />
         />
@@ -378,6 +378,15 @@
         mvcPaths: null,
         errorMessage: null,
         polygonGeojson: '',
+        mapColor: {
+          1: '#badce8',
+          2: '#a4d9f8',
+          3: '#72b8f4',
+          4: '#148dff',
+          5: '#2885de',
+          6: '#286aa7',
+          7: '#1b3d65',
+        },
         mapOpacity: {
           0: 1,
           1: 0.95,
