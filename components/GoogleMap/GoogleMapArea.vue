@@ -321,7 +321,7 @@
     data() {
       return {
         center: { lat: 13.7248936, lng: 100.6158319 },
-        zoom: isMobile ? 9 : 10,
+        zoom: isMobile ? 9 : 9.5,
         mapStyles: mapStyles,
         paths: bangkokCoordinates,
         bangkokPhraNakhonCoordinate: bangkokPhraNakhonCoordinate,
@@ -379,13 +379,13 @@
         errorMessage: null,
         polygonGeojson: '',
         mapColor: {
-          1: '#badce8',
-          2: '#a4d9f8',
-          3: '#72b8f4',
-          4: '#148dff',
-          5: '#2885de',
-          6: '#286aa7',
-          7: '#1b3d65',
+          1: '#388CE0',
+          2: '#55AAFF',
+          3: '#83BFF9',
+          4: '#B0D4F6',
+          5: '#CDE0F3',
+          6: '#E9EDF4',
+          7: '#F7F7F7',
         },
         mapOpacity: {
           0: 1,
