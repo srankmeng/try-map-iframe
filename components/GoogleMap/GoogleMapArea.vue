@@ -35,7 +35,7 @@
           :paths="area.coordinate"
           :editable="false"
           :options="{
-            'strokeColor': '#FFFFFF',
+            'strokeColor': '#666665',
             'strokeOpacity': 1,
             'strokeWeight': 1,
             'fillColor': mapColor[area.value],
