@@ -321,7 +321,7 @@
     data() {
       return {
         center: { lat: 13.7248936, lng: 100.6158319 },
-        zoom: isMobile ? 9 : 9.5,
+        zoom: isMobile ? 9 : 9,
         mapStyles: mapStyles,
         paths: bangkokCoordinates,
         bangkokPhraNakhonCoordinate: bangkokPhraNakhonCoordinate,
