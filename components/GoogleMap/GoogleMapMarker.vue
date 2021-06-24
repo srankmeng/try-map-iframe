@@ -34,13 +34,13 @@
           @closeclick="infoWinOpen=false"
         />
         <GmapMarker
-          v-for="(m, i) in markers"
-          :key="`mediaList_${i}`"
-          :position="m.position"
+          v-for="(marker, index) in markers"
+          :key="`mediaList_${index}`"
+          :position="marker.position"
           :clickable="true"
           :draggable="false"
-          :icon="'./images/ic-marker-media.svg'"
-          @click="toggleInfoWindow(m,i)"
+          icon="./images/ic-marker-media.svg"
+          @click="toggleInfoWindow(index)"
         />
       </GmapMap>
     </client-only>
@@ -98,6 +98,13 @@
         type: String,
         default: "410px",
       },
+      screenLocations: {
+        type: Array,
+      },
+      currentScreenIndex: {
+        type: [Number, String],
+        default: null,
+      },
     },
     data() {
       return {
@@ -117,82 +124,69 @@
           }
         },
         // GmapMarker + GmapInfoWindow (infoText)
-        markers: [
-          {
-            position: { lat: 13.7646948, lng: 100.5374692 },
-            infoText:
-              '<div class="google-map-area-info">' +
-                '<div class="google-map-area-section is-info-heading">' +
-                  '<div class="google-map-area-text is-info-heading">Screen_Name</div>' +
-                '</div>' +
-                '<div class="google-map-area-section is-info-description">' +
-                  '<div class="google-map-area-text is-info-description">Screen_Description</div>' +
-                '</div>' +
-                '<div class="google-map-area-grid is-info">' +
-                  '<div class="google-map-area-grid-column">' +
-                    '<div class="google-map-area-image is-media">' +
-                      '<img src="./images/placeholder-media-screen.svg" alt="Media" />' +
-                    '</div>' +
-                  '</div>' +
-                  '<div class="google-map-area-grid-column">' +
-                    '<div class="google-map-area-grid is-dimension-link">' +
-                      '<div class="google-map-area-grid-column">' +
-                        '<div class="google-map-area-text is-info-dimension">Width : xxx m.</div>' +
-                        '<div class="google-map-area-text is-info-dimension">Height : xxx m.</div>' +
-                      '</div>' +
-                      '<div class="google-map-area-grid-column is-link">' +
-                        '<a class="google-map-area-text is-info-link" href="">เส้นทาง</a>' +
-                      '</div>' +
-                    '</div>' +
+        markers: [],
+      }
+    },
+    watch: {
+      currentScreenIndex(index) {
+        console.log('toggleInfoWindow', index);
+        this.toggleInfoWindow(index)
+      },
+    },
+    created() {
+      this.screenLocations.forEach((screenLocation) => {
+        this.markers.push({
+          position: { lat: screenLocation.lat, lng: screenLocation.lng },
+          infoText:
+            '<div class="google-map-area-info">' +
+              '<div class="google-map-area-section is-info-heading">' +
+                `<div class="google-map-area-text is-info-heading">${screenLocation.name}</div>` +
+              '</div>' +
+              '<div class="google-map-area-section is-info-description">' +
+                '<div class="google-map-area-text is-info-description">Screen_Description</div>' +
+              '</div>' +
+              '<div class="google-map-area-grid is-info">' +
+                '<div class="google-map-area-grid-column">' +
+                  '<div class="google-map-area-image is-media">' +
+                    '<img src="./images/placeholder-media-screen.svg" alt="Media" />' +
                   '</div>' +
                 '</div>' +
-              '</div>',
-          },
-          {
-            position: { lat: 13.7646948, lng: 100.4374692 },
-            infoText:
-              '<div class="google-map-area-info">' +
-                '<div class="google-map-area-section is-info-heading">' +
-                  '<div class="google-map-area-text is-info-heading">Screen_Name</div>' +
-                '</div>' +
-                '<div class="google-map-area-section is-info-description">' +
-                  '<div class="google-map-area-text is-info-description">Screen_Description</div>' +
-                '</div>' +
-                '<div class="google-map-area-grid is-info">' +
-                  '<div class="google-map-area-grid-column">' +
-                    '<div class="google-map-area-image is-media">' +
-                      '<img src="./images/placeholder-media-screen.svg" alt="Media" />' +
+                '<div class="google-map-area-grid-column">' +
+                  '<div class="google-map-area-grid is-dimension-link">' +
+                    '<div class="google-map-area-grid-column">' +
+                      `<div class="google-map-area-text is-info-dimension">Width : ${screenLocation.width} m.</div>` +
+                      `<div class="google-map-area-text is-info-dimension">Height : ${screenLocation.height} m.</div>` +
                     '</div>' +
-                  '</div>' +
-                  '<div class="google-map-area-grid-column">' +
-                    '<div class="google-map-area-grid is-dimension-link">' +
-                      '<div class="google-map-area-grid-column">' +
-                        '<div class="google-map-area-text is-info-dimension">Width : xxx m.</div>' +
-                        '<div class="google-map-area-text is-info-dimension">Height : xxx m.</div>' +
-                      '</div>' +
-                      '<div class="google-map-area-grid-column is-link">' +
-                        '<a class="google-map-area-text is-info-link" href="">เส้นทาง</a>' +
-                      '</div>' +
+                    '<div class="google-map-area-grid-column is-link">' +
+                      `<div class="google-map-area-text is-info-link" style="cursor: pointer;" onClick="viewAppendix('${screenLocation.id}')">เส้นทาง</div>` +
                     '</div>' +
                   '</div>' +
                 '</div>' +
-              '</div>',
-          }
-        ],
+              '</div>' +
+            '</div>',
+        })
+      })
+
+      window.viewAppendix = function(screenId) {
+        const message = JSON.stringify({
+          screenId: screenId
+        });
+
+        window.parent.postMessage(message, '*');
       }
     },
     methods: {
-      toggleInfoWindow: function(marker, idx) {
-        this.infoWindowPos = marker.position;
-        this.infoOptions.content = marker.infoText;
+      toggleInfoWindow(index) {
+        this.infoWindowPos = this.markers[index].position;
+        this.infoOptions.content = this.markers[index].infoText;
         //check if its the same marker that was selected if yes toggle
-        if (this.currentMidx == idx) {
+        if (this.currentMidx == index) {
           this.infoWinOpen = !this.infoWinOpen;
         }
         //if different marker set infowindow to open and reset current marker index
         else {
           this.infoWinOpen = true;
-          this.currentMidx = idx;
+          this.currentMidx = index;
         }
       },
     },

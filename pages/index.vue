@@ -1,7 +1,7 @@
 <template>
   <div>
-    <GoogleMap>
-      <GoogleMapMarker />
+    <GoogleMap isMarker v-if="isReady">
+      <GoogleMapMarker :screen-locations="marketList" :current-screen-index="currentScreenIndex" />
     </GoogleMap>
   </div>
 </template>
@@ -21,12 +21,27 @@
       window.addEventListener('message', this.recieveDataMarkerMap);
 
     },
+    data() {
+      return {
+        marketList: [],
+        isReady: false,
+        currentScreenIndex: null,
+      }
+    },
     methods: {
       recieveDataMarkerMap(e) {
         const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
         if(data.markerList) {
           // to do
-          console.log('sub iframe1 marker map: ', data.markerList);
+          this.marketList = data.markerList
+          this.isReady = true
+          // console.log('sub iframe1 marker map: ', data.markerList);
+        }
+
+        console.log('data', data);
+
+        if (data.currentScreenIndex) {
+          this.currentScreenIndex = data.currentScreenIndex
         }
       }
     },
