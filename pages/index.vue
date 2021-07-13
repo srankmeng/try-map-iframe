@@ -1,7 +1,7 @@
 <template>
   <div>
     <GoogleMap isMarker v-if="isReady">
-      <GoogleMapMarker :screen-locations="marketList" :current-screen-index="currentScreenIndex" />
+      <GoogleMapMarker :screen-locations="marketList" :current-screen="currentScreen" />
     </GoogleMap>
   </div>
 </template>
@@ -25,7 +25,10 @@
       return {
         marketList: [],
         isReady: false,
-        currentScreenIndex: null,
+        currentScreen: {
+          index: null,
+          thumbnailImgUrl: null,
+        },
       }
     },
     methods: {
@@ -40,8 +43,9 @@
 
         console.log('data', data);
 
-        if (data.currentScreenIndex) {
-          this.currentScreenIndex = data.currentScreenIndex
+        if (data.currentScreen) {
+          this.currentScreen.index = data.currentScreen.index
+          this.currentScreen.thumbnailImgUrl = data.currentScreen.thumbnailImgUrl
         }
       }
     },
