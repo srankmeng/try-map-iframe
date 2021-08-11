@@ -26,6 +26,7 @@
           fullscreenControl: false,
           disableDefaultUi: false,
           styles: mapStyles,
+          gestureHandling: 'greedy'
         }"
       >
         <gmap-polygon
