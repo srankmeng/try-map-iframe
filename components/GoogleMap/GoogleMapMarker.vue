@@ -137,15 +137,17 @@
     created() {
       this.screenLocations.forEach((screenLocation) => {
         const description = screenLocation.description || ''
+        const width = screenLocation.width ? `${screenLocation.width} m.`: ''
+        const height = screenLocation.height ?`${screenLocation.height} m.`: ''
         this.markers.push({
           position: { lat: screenLocation.lat, lng: screenLocation.lng },
           infoText:
             '<div class="google-map-area-info">' +
               '<div class="google-map-area-section is-info-heading">' +
-                `<div class="google-map-area-text is-info-heading">${screenLocation.name} dasdsa dsad sadasd asd asd asdasdsadsadasda dasdsa dsad sadasd asd asd asdasdsadsadasda</div>` +
+                `<div class="google-map-area-text is-info-heading">${screenLocation.name}</div>` +
               '</div>' +
               '<div class="google-map-area-section is-info-description">' +
-              `<div class="google-map-area-text is-info-description">${description} dasdsa dsad sadasd asd asd asdasdsadsadasdas dasdsa dsad sadasd asd asd asdasdsadsadasda dasdsa dsad sadasd asd asd asdasdsadsadasda dasdsa dsad sadasd asd asd asdasdsadsadasda</div>` +
+              `<div class="google-map-area-text is-info-description">${description}</div>` +
               '</div>' +
               '<div class="google-map-area-grid is-info">' +
                 '<div class="google-map-area-grid-column">' +
@@ -156,8 +158,8 @@
                 '<div class="google-map-area-grid-column" style="flex: 1">' +
                   '<div class="google-map-area-grid is-dimension-link">' +
                     '<div class="google-map-area-grid-column">' +
-                      `<div class="google-map-area-text is-info-dimension">Width : ${screenLocation.width} m.</div>` +
-                      `<div class="google-map-area-text is-info-dimension">Height : ${screenLocation.height} m.</div>` +
+                      `<div class="google-map-area-text is-info-dimension">Width : ${width}</div>` +
+                      `<div class="google-map-area-text is-info-dimension">Height : ${height}</div>` +
                     '</div>' +
                     '<div class="google-map-area-grid-column is-link">' +
                       `<div class="google-map-area-text is-info-link" style="cursor: pointer;" onClick="viewAppendix('${screenLocation.id}')">รายละเอียด</div>` +
