@@ -39,7 +39,15 @@
           // to do
           this.areaList = data.areaList;
           this.iframeId = data.iframeId;
-          console.log('sub iframe1 area map: ', data.areaList);
+          // console.log('sub iframe1 area map: ', data.areaList);
+
+          if (data.isReport) {
+            const message = JSON.stringify({
+              mapsLoaded: true
+            });
+
+            window.parent.postMessage(message, '*');
+          }
         }
         if(data.isGenerateImage) {
           this.convertasbinaryimage();

@@ -28,6 +28,7 @@
           styles: mapStyles,
           gestureHandling: 'greedy'
         }"
+        @idle="mapLoaded"
       >
         <gmap-polygon
           v-for="(area, index) in areas"
@@ -415,7 +416,6 @@
         }
       }, 1000)
     },
-
     computed: {
       polygonPaths: function () {
         if (!this.mvcPaths) return null
@@ -434,6 +434,10 @@
     },
 
     methods: {
+      mapLoaded() {
+        // alert('map is loaded!');
+        console.log('map is loaded!')
+      },
       updateCenter: function (place) {
         this.center = {
           lat: place.geometry.location.lat(),
