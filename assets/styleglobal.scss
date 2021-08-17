@@ -6,7 +6,7 @@
 // ==================================================================================================
 // //////////////////////////////////////////////////////////////////////////////////////////////////
 
-@import "~assets/styleguides/styleguides";
+@import '~assets/styleguides/styleguides';
 
 // Utilities
 // ============================================================
@@ -39,25 +39,26 @@
 }
 
 .text-color-primary-1 {
-  color: $color-primary-1;
+  color: $color-primary-1
 }
 
 .text-color-chart-blue-1 {
-  color: $color-chart-blue-1;
+  color: $color-chart-blue-1
 }
 
 .text-color-chart-blue-4 {
-  color: $color-chart-blue-4;
+  color: $color-chart-blue-4
 }
 
 .text-color-chart-blue-5 {
-  color: $color-chart-blue-5;
+  color: $color-chart-blue-5
 }
 
 .bg-color-chart-blue-1 {
-  background-color: $color-chart-blue-1;
+  background-color: $color-chart-blue-1
 }
 
-.vue-map-container {
-  height: 100vh !important;
+.report-gradient-bg {
+  background: rgb(214,229,248);
+  background: linear-gradient(0deg, rgba(214,229,248,1) 50%, rgba(237,245,255,1) 100%);
 }

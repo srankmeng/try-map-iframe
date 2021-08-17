@@ -1,13 +1,5 @@
 <template>
-  <nuxt />
+  <v-app>
+    <Nuxt />
+  </v-app>
 </template>
-
-<script>
-export default {
-  data () {
-    return {
-
-    }
-  }
-}
-</script>
