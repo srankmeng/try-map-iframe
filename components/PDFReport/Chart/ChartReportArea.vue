@@ -12,11 +12,9 @@
   >
     <div class="flex">
       <div class="report-area-section is-map w-1/2 h-80">
-        <GoogleMap isArea>
-          <GoogleMapArea :areas="areas" />
+        <GoogleMap isArea :id="`map-area-iframe-${id}`">
+          <GoogleMapArea :areas="areas" @mapLoaded="mapLoaded" />
         </GoogleMap>
-        <!-- <iframe :id="`map-area-iframe-${id}`" src="http://d272wao43r3lfs.cloudfront.net/areaMap" height="320px" width="365px"></iframe> -->
-        <!-- <iframe :id="`map-area-iframe-${id}`" src="http://localhost:3004/areaMap" height="320px" width="100%"></iframe> -->
         <div :id="`res-${id}`">
         </div>
 
@@ -65,6 +63,9 @@
 <script>
   import GoogleMap from "./../../GoogleMap/index.js";
   import startCase from 'lodash/startCase'
+  import canvas2Image from '@/helpers/canvas2image'
+  import html2canvas from '@/helpers/html2canvas'
+
   export default {
     name: "ChartReportArea",
 
@@ -112,60 +113,32 @@
         imageUrl: '',
       }
     },
-    mounted() {
-      this.sendDataToAreaMap()
-      const self = this
-      // recieve image url form iframe
-      window.addEventListener('message', function(e) {
-        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-        if(data.iframeId === `map-area-iframe-${self.id}`) {
-          const imageTag = document.createElement('img');
-          imageTag.setAttribute('src', data.imageUrl);
-          document.getElementById(`res-${self.id}`).appendChild(imageTag);
-          // document.getElementById(`map-area-iframe-${self.id}`).style.display = 'none';
-          document.getElementById(`map-area-iframe-${self.id}`).remove();
-        }
-      });
-    },
     methods: {
-      setImageUrl(url) {
-        this.imageUrl = url
-      },
-      sendDataToAreaMap() {
-        const self = this;
-        $(`#map-area-iframe-${this.id}`).on('load', function(){
-          console.log('############# Area Map ############');
-          const message = JSON.stringify({
-            areaList: self.areas || [],
-            iframeId: `map-area-iframe-${self.id}`,
-            isReport: true,
-          });
+      mapLoaded() {
+        // const self = this
 
-          this.contentWindow.postMessage(message, '*');
-            const el = document.getElementById(`map-area-iframe-${self.id}`);
-            // setTimeout(function() {
-            //   el.scrollIntoView(true);
+        // const areaMap = document.getElementById(`map-area-iframe-${this.id}`);
 
-            //   setTimeout(function() {
-            //     el.scrollIntoView(false);
+        // html2canvas(areaMap, {
+        //   useCORS:true,
+        //   allowTaint: true,
+        //   async:false,
+        //   scale: 2,
+        // }).then(function (canvas) {
+        //   let img = canvas2Image.convertToPNG(canvas);
+        //   img = img.replace('data:image/png;base64,', '');
+        //   const finalImageSrc = 'data:image/png;base64,' + img;
 
-            //     setTimeout(function() {
-                  // $("html, body").animate({ scrollTop: $(document).height() }, 2000);
-                  // $("html, body").animate({ scrollTop: 0 }, 2000);
-                  // setTimeout(function() {
-                  //   const msg = JSON.stringify({
-                  //     isGenerateImage: true,
-                  //   });
-                  //   el.contentWindow.postMessage(msg, '*');
+        //   const imageTag = document.createElement('img');
+        //   imageTag.setAttribute('src', finalImageSrc);
+        //   document.getElementById(`res-${self.id}`).appendChild(imageTag);
 
-                  // }, 2000)
+        //   areaMap.remove();
 
-            //     }, 2000)
+          console.log('map is loaded!');
 
-            //   }, 1500)
-            // }, 1500)
-
-        });
+          this.$store.commit('report/mapLoaded')
+        // });
       },
     },
   };

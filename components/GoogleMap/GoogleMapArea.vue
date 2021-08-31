@@ -28,7 +28,7 @@
           styles: mapStyles,
           gestureHandling: 'greedy'
         }"
-        @idle="mapLoaded"
+        @idle="$emit('mapLoaded')"
       >
         <gmap-polygon
           v-for="(area, index) in areas"
@@ -434,10 +434,6 @@
     },
 
     methods: {
-      mapLoaded() {
-        // alert('map is loaded!');
-        console.log('map is loaded!')
-      },
       updateCenter: function (place) {
         this.center = {
           lat: place.geometry.location.lat(),

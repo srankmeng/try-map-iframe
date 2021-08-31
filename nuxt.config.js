@@ -33,6 +33,7 @@ export default {
     { src: "~/plugins/google-maps", ssr: true },
     { src: '~/plugins/filters.js', ssr: false, },
     { src: '~/plugins/global.js', ssr: false, },
+    { src: '~/plugins/vue-postmessage.js', ssr: false, },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
