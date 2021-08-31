@@ -4,20 +4,20 @@
     <Button @click="downloadReport()" class="my-4 mx-2">Download Report</Button>
     <div>
       <section ref="pdfContent" style="width: 793.706px">
-        <section class="pdf-item font-cover-page">
+        <!-- <section class="pdf-item font-cover-page">
           <FrontCoverPage :periods="periods" />
-        </section>
-        <section class="pdf-item default-page media-list-page">
+        </section> -->
+        <!-- <section class="pdf-item default-page media-list-page">
           <DefaultPage>
             <div v-for="media in iframeObject.productsGroupedByMonth" :key="media.month" class="mediaListTable" ref="mediaListTable">
               <MediaListTable :month="media" class="mb-4" />
             </div>
           </DefaultPage>
-        </section>
+        </section> -->
         <template v-for="(month, monthIndex) in iframeObject.productsGroupedByMonth">
-          <section class="pdf-item divided-page">
+          <!-- <section class="pdf-item divided-page">
             <DividedPage :index="monthIndex + 1" :month="month.month" />
-          </section>
+          </section> -->
             <template v-for="(product, productIndex) in month.products">
               <template v-if="product.mediaReport">
                 <section class="pdf-item default-page">
@@ -50,9 +50,9 @@
               </template>
             </template>
         </template>
-        <section class="pdf-item back-cover-page">
+        <!-- <section class="pdf-item back-cover-page">
           <BackCoverPage />
-        </section>
+        </section> -->
       </section>
     </div>
     <OverlayProgress v-if="generatingReport" :percent="generatingPercent" />
