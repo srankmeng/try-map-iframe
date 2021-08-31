@@ -77,12 +77,8 @@
             }
           },
           devicePixelRatio: 2,
-          // scales: {
-          //     yAxes: [{ ticks: { fontFamily: "'Roboto', sans-serif" }}],
-          //     xAxes: [{ ticks: { fontFamily: "'Roboto', sans-serif" }}]
-          // },
           responsive: true,
-          maintainAspectRatio: true,
+          // maintainAspectRatio: false,
           legend: {
             display: false,
           },
@@ -91,12 +87,9 @@
             bodyFontFamily: "'Montserrat', 'Kanit'",
           },
           animation: {
-              duration: 0, // general animation time
+            animateScale: true,
+            animateRotate: true,
           },
-          hover: {
-              animationDuration: 0, // duration of animations when hovering an item
-          },
-          responsiveAnimationDuration: 0, // animation duration after a resize
           cutoutPercentage: 60,
         },
       )
