@@ -1,7 +1,11 @@
 <template>
   <div>
     <GoogleMap isMarker v-if="isReady">
-      <GoogleMapMarker :screen-locations="marketList" :current-screen="currentScreen" />
+      <GoogleMapMarker
+        :screen-locations="marketList"
+        :current-screen="currentScreen"
+        :height="mapHeight"
+      />
     </GoogleMap>
   </div>
 </template>
@@ -24,6 +28,7 @@
     data() {
       return {
         marketList: [],
+        mapHeight: "410px",
         isReady: false,
         currentScreen: {
           index: null,
@@ -41,11 +46,12 @@
           // console.log('sub iframe1 marker map: ', data.markerList);
         }
 
-        console.log('data', data);
+        if (data.mapHeight) {
+          this.mapHeight = data.mapHeight
+        }
 
         if (data.currentScreen) {
           this.currentScreen.index = data.currentScreen.index
-          this.currentScreen.thumbnailImgUrl = data.currentScreen.thumbnailImgUrl
         }
       }
     },

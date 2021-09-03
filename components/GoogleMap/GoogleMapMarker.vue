@@ -39,7 +39,7 @@
           :position="marker.position"
           :clickable="true"
           :draggable="false"
-          icon="./images/ic-marker-media.svg"
+          icon="./images/icons/ic-marker-media.svg"
           @click="toggleInfoWindow(index)"
         />
       </GmapMap>
@@ -129,7 +129,7 @@
     watch: {
       currentScreen: {
         handler(value){
-          this.toggleInfoWindow(value.index, value.thumbnailImgUrl)
+          this.toggleInfoWindow(value.index)
         },
         deep: true
       }
@@ -139,6 +139,7 @@
         const description = screenLocation.description || ''
         const width = screenLocation.width ? `${screenLocation.width} m.`: ''
         const height = screenLocation.height ?`${screenLocation.height} m.`: ''
+        const thumbnailImgUrl = screenLocation.thumbnailImgUrl || './images/placeholder-media-screen.svg'
         this.markers.push({
           position: { lat: screenLocation.lat, lng: screenLocation.lng },
           infoText:
@@ -152,7 +153,7 @@
               '<div class="google-map-area-grid is-info">' +
                 '<div class="google-map-area-grid-column">' +
                   '<div class="google-map-area-image is-media">' +
-                    '<img src="./images/placeholder-media-screen.svg" alt="Media" />' +
+                    `<img src="${thumbnailImgUrl}" alt="Media" />` +
                   '</div>' +
                 '</div>' +
                 '<div class="google-map-area-grid-column" style="flex: 1">' +
@@ -180,14 +181,11 @@
       }
     },
     methods: {
-      toggleInfoWindow(index, thumbnailImgUrl) {
+      toggleInfoWindow(index) {
         this.infoWindowPos = this.markers[index].position;
 
-        if (thumbnailImgUrl) {
-          this.infoOptions.content = this.markers[index].infoText.replace('./images/placeholder-media-screen.svg', thumbnailImgUrl);
-        } else {
-          this.infoOptions.content = this.markers[index].infoText;
-        }
+        this.infoOptions.content = this.markers[index].infoText;
+
         //check if its the same marker that was selected if yes toggle
         if (this.currentMidx == index) {
           this.infoWinOpen = !this.infoWinOpen;
