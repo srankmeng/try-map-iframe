@@ -1,18 +1,21 @@
 <template>
-  <div class="divided-page pdf-layout-page relative">
-    <div class="top-white-logo">
-      <img src="~static/images/pdf-report/logo-color-white.png" />
-      <div class="report-text">
-        REPORT
+  <div class="w-full relative">
+    <ConfidentialBar />
+    <div class="divided-page pdf-layout-page relative">
+      <div class="top-white-logo">
+        <img src="~static/images/pdf-report/logo-color-white.png" />
+        <div class="report-text">
+          REPORT
+        </div>
       </div>
-    </div>
-    <div class="heading">
-      <div class="month-number">
-        {{ index }}
-        <div class="border"></div>
-      </div>
-      <div class="month-name">
-        {{ month }}
+      <div class="heading">
+        <div class="month-number">
+          {{ index }}
+          <div class="border"></div>
+        </div>
+        <div class="month-name">
+          {{ month }}
+        </div>
       </div>
     </div>
   </div>

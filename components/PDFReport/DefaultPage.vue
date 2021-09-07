@@ -1,5 +1,6 @@
 <template>
   <div class="report-gradient-bg pdf-layout-page relative">
+    <ConfidentialBar />
     <div class="top-logo">
       <img src="~static/images/pdf-report/logo-color.png">
       <div class="report-text">REPORT</div>

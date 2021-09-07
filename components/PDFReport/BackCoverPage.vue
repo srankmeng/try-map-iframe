@@ -1,13 +1,16 @@
 <template>
-  <div class="back-cover-page pdf-layout-page relative">
-    <div class="center-logo">
-      <img src="~static/images/pdf-report/logo-white.png">
-      <div class="media-text">
-        media
+  <div class="relative">
+    <ConfidentialBar />
+    <div class="back-cover-page pdf-layout-page relative">
+      <div class="center-logo">
+        <img src="~static/images/pdf-report/logo-white.png">
+        <div class="media-text">
+          media
+        </div>
       </div>
-    </div>
-    <div class="social">
-      <img src="~static/images/pdf-report/social.png">
+      <div class="social">
+        <img src="~static/images/pdf-report/social.png">
+      </div>
     </div>
   </div>
 </template>

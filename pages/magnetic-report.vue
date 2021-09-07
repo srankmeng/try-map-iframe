@@ -121,22 +121,26 @@ export default {
             for(let i = 1; i <= pageNo; i++) {
               $('.media-list-page').before(`
                 <section class="pdf-item default-page" id="media-list-page-${i}">
-                  <div class="report-gradient-bg pdf-layout-page relative">
-                    <div class="top-logo">
-                      <img src="${self.$path.static}/images/pdf-report/logo-color.png">
-                      <div class="report-text">REPORT</div>
+                  <div class="relative">
+                    <div class="w-full text-center confidential-bar">
+                      <h2 class="text-lg text-white font-semibold">Confidential</h2>
                     </div>
-                    <div class="px-4 pt-32">
-                      <div class="list-table"></div>
-                    </div>
-                    <div class="absolute bottom-4 left-4 text-xs">
-                      *Note: Eyeballs and grid reach are reported by the entire month – not actual purchase period
-                    </div>
-                    <div class="bottom-logo">
-                      <img src="${self.$path.static}/images/pdf-report/bottom-logo.png">
+                    <div class="report-gradient-bg pdf-layout-page relative">
+                      <div class="top-logo">
+                        <img src="${self.$path.static}/images/pdf-report/logo-color.png">
+                        <div class="report-text">REPORT</div>
+                      </div>
+                      <div class="px-4 pt-32">
+                        <div class="list-table"></div>
+                      </div>
+                      <div class="absolute bottom-4 left-4 text-xs">
+                        *Note: Eyeballs and grid reach are reported by the entire month – not actual purchase period
+                      </div>
+                      <div class="bottom-logo">
+                        <img src="${self.$path.static}/images/pdf-report/bottom-logo.png">
+                      </div>
                     </div>
                   </div>
-
                 </section>`
               )
 

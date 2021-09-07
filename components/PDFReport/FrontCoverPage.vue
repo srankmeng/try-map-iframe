@@ -1,5 +1,6 @@
 <template>
   <div class="report-gradient-bg pdf-layout-page relative">
+    <ConfidentialBar />
     <div class="period mt-6">
       <div class="text-center">
         Period
