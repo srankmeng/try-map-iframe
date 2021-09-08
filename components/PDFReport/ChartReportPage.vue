@@ -55,17 +55,18 @@
               </div>
             </div>
           </div>
-          <div class="flex px-40 mt-2" style="opacity: 0">
+          <div class="flex px-40 mt-3" style="opacity: 0">
+          <!-- <div class="flex px-40 mt-3"> -->
             <div class="flex flex-col items-center">
-              <img class="w-10" :src="`${$path.static}/images/icons/ic-gauge-black.svg`" alt="Icon" />
+              <img class="w-10" :src="`${$path.static}/images/icons/gauge-icon.png`" alt="Gauge-Icon" />
               <div>Rating point</div>
             </div>
             <div class="ml-10 flex justify-center">
               <div>
                 <div class="rounded-t-full shadow w-14 h-7 text-white text-center font-bold" style="background-color:#f45e02">
-                  <div class="pt-2">66.11</div>
+                  <div class="pt-2">{{ mediaReport.Rating_BKK__c || '-' }}</div>
                 </div>
-                <div class="shadow rounded-b-full  w-14 h-7 text-center font-bold" style="color:#f45e02">
+                <div class="shadow rounded-b-full border border-gray-200  w-14 h-7 text-center font-bold" style="color:#f45e02">
                   BKK
                 </div>
               </div>
@@ -73,9 +74,9 @@
             <div class="ml-5 flex justify-center">
               <div>
                 <div class="rounded-t-full shadow w-14 h-7 text-white text-center font-bold" style="background-color:#f45e02">
-                  <div class="pt-2">4.22</div>
+                  <div class="pt-2">{{ mediaReport.Rating_UPC__c || '-' }}</div>
                 </div>
-                <div class="shadow rounded-b-full  w-14 h-7 text-center font-bold" style="color:#f45e02">
+                <div class="shadow rounded-b-full border border-gray-200  w-14 h-7 text-center font-bold" style="color:#f45e02">
                   UPC
                 </div>
               </div>
@@ -83,9 +84,9 @@
             <div class="ml-5 flex justify-center">
               <div>
                 <div class="rounded-t-full shadow w-14 h-7 text-white text-center font-bold" style="background-color:#f45e02">
-                  <div class="pt-2">13.55</div>
+                  <div class="pt-2">{{ mediaReport.Rating_NTW__c || '-' }}</div>
                 </div>
-                <div class="shadow rounded-b-full  w-14 h-7 text-center font-bold" style="color:#f45e02">
+                <div class="shadow rounded-b-full border border-gray-200  w-14 h-7 text-center font-bold" style="color:#f45e02">
                   NTW
                 </div>
               </div>
