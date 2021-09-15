@@ -163,7 +163,7 @@
                       `<div class="google-map-area-text is-info-dimension">Height : ${height}</div>` +
                     '</div>' +
                     '<div class="google-map-area-grid-column is-link">' +
-                      `<div class="google-map-area-text is-info-link" style="cursor: pointer;" onClick="viewAppendix('${screenLocation.id}')">รายละเอียด</div>` +
+                      `<div class="google-map-area-text is-info-link" style="cursor: pointer;" onClick="viewAppendix('${screenLocation.id}')">More detail</div>` +
                     '</div>' +
                   '</div>' +
                 '</div>' +
