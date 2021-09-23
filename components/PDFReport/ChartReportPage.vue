@@ -25,7 +25,7 @@
                     <div class="text-blue-600 font-semibold">CPME</div>
                     <div>
                       <span class="text-blue-800 font-bold ml-2">
-                        {{ mediaReport[report.CPMNumber[user.Type_of_Customer__c]] }}
+                        {{ mediaReport[report.CPMNumber[user.Type_of_Customer__c]] ? mediaReport[report.CPMNumber[user.Type_of_Customer__c]].toFixed(2) : '' }}
                       </span>
                       <span class="text-gray-500 ml-1">THB</span>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="text-blue-600 font-semibold">CPGR</div>
                     <div>
                       <span class="text-blue-800 font-bold ml-2">
-                        {{ mediaReport[report.CPRNumber[user.Type_of_Customer__c]] }}
+                        {{ mediaReport[report.CPRNumber[user.Type_of_Customer__c]] ? mediaReport[report.CPRNumber[user.Type_of_Customer__c]].toFixed(2) : '' }}
                       </span>
                       <span class="text-gray-500 ml-1">THB</span>
                     </div>
