@@ -22,7 +22,7 @@
               <div class="report-age-grid-column is-chart-content">
                 <div class="report-age-grid is-chart-bar-left">
                   <div class="report-age-grid-column is-chart-bar-label-left">
-                    <span class="report-age-text text-xs font-semibold text-color-primary-1" style="font-size: 9px;">{{ age.femaleValue ? age.femaleValue.toFixed(2) : '' }}%</span>
+                    <span class="report-age-text text-xs font-semibold text-color-primary-1" style="font-size: 9px;">{{ age.femaleValue ? parseFloat(age.femaleValue).toFixed(2) : '' }}%</span>
                   </div>
                   <div class="report-age-grid-column is-chart-bar" :style="`width: ${age.femaleValue * 10}%`">
                     <div class="report-age-chart-bar is-pink font-semibold text-color-primary-1"></div>
@@ -35,7 +35,7 @@
                     <div class="report-age-chart-bar is-blue font-semibold text-color-primary-1"></div>
                   </div>
                   <div class="report-age-grid-column is-chart-bar-label-right">
-                    <span class="report-age-text text-xs font-semibold text-color-primary-1" style="font-size: 9px;">{{ age.maleValue ? age.maleValue.toFixed(2) : '' }}%</span>
+                    <span class="report-age-text text-xs font-semibold text-color-primary-1" style="font-size: 9px;">{{ age.maleValue ? parseFloat(age.maleValue).toFixed(2) : '' }}%</span>
                   </div>
                 </div>
               </div>

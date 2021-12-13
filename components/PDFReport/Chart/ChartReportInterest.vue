@@ -4,7 +4,7 @@
       <div class="font-semibold text-color-primary-1 w-24" style="font-size: 11px">{{ interestIndex + 1 }}. <span v-html="interest.name"></span></div>
       <div class="flex-1 flex items-center">
         <div class="bg-color-chart-blue-1 h-full" :style="{ width: +interest.percent * 10 + '%' }"></div>
-        <div class="font-semibold text-color-primary-1 ml-2" style="font-size: 9px">{{ interest.percent ? interest.percent.toFixed(2) : '' }}%</div>
+        <div class="font-semibold text-color-primary-1 ml-2" style="font-size: 9px">{{ interest.percent ? parseFloat(interest.percent).toFixed(2) : '' }}%</div>
       </div>
     </div>
   </div>

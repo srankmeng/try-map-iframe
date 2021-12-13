@@ -20,8 +20,8 @@
           <td>{{ product.product ? product.product.Network_Name__c : null }}</td>
           <td>{{ formatDates(product.date.start, product.date.end) }}</td>
           <!-- <td class="text-right">{{ product.mediaReport && product.mediaReport.mediaReport ? product.mediaReport.mediaReport.no_of_screens__c : null }}</td> -->
-          <td>{{ product.mediaReport && product.mediaReport.mediaReport ? $options.filters.currencyFormat(product.mediaReport.mediaReport.Total_eyeballs__c) : null }}</td>
-          <td>{{ product.mediaReport && product.mediaReport.mediaReport ? $options.filters.currencyFormat(product.mediaReport.mediaReport.Reach__c) : null }}</td>
+          <td>{{ product.mediaReport && product.mediaReport.auds.length > 0 ? $options.filters.currencyFormat(product.mediaReport.totalEyeball) : null }}</td>
+          <td>{{ product.mediaReport && product.mediaReport.auds.length > 0 ? $options.filters.currencyFormat(product.mediaReport.totalReach) : null }}</td>
         </tr>
       </tbody>
       <tfoot>
@@ -31,8 +31,8 @@
               Total
             </span>
           </td>
-          <td class="text-md font-bold text-color-primary-1">{{ $options.filters.currencyFormat(getSumValue(month.products, 'Total_eyeballs__c')) }}*</td>
-          <td class="text-md font-bold text-color-primary-1">{{ $options.filters.currencyFormat(getSumValue(month.products, 'Reach__c')) }}*</td>
+          <td class="text-md font-bold text-color-primary-1">{{ $options.filters.currencyFormat(month.totalEyeball) }}*</td>
+          <td class="text-md font-bold text-color-primary-1">{{ $options.filters.currencyFormat(month.totalReach) }}*</td>
         </tr>
       </tfoot>
     </table>
@@ -59,9 +59,6 @@ export default {
                 .twix(end, { allDay: true })
                 .format()
     },
-    getSumValue(products, key) {
-      return products.reduce((sum, product) => sum += product.mediaReport && product.mediaReport.mediaReport ? product.mediaReport.mediaReport[key] : 0, 0)
-    }
   }
 }
 </script>

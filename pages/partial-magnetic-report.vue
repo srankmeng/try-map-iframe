@@ -20,33 +20,35 @@
           </section> -->
             <template v-for="(product, productIndex) in month.products">
               <template v-if="product.mediaReport">
-                <section class="pdf-item default-page">
-                  <DefaultPage :month="month.month">
-                    <ChartReportPage
-                      :media-report="product.mediaReport.mediaReport"
-                      :visiting-frequency="product.mediaReport.visitingFrequency"
-                      :visiting-frequency-chart-data="product.mediaReport.visitingFrequencyChartData"
-                      :ages="product.mediaReport.ages"
-                      :average-dwell-times="product.mediaReport.averageDwellTimes"
-                      :average-dwell-times-chart-data="product.mediaReport.averageDwellTimesChartData"
-                      :purchasing-powers="product.mediaReport.purchasingPowers"
-                      :purchasing-powers-chart-data="product.mediaReport.purchasingPowersChartData"
-                      :visitor-types="product.mediaReport.visitorTypes"
-                      :interests="product.mediaReport.interests"
-                      :user="iframeObject.user.contact"
-                    />
-                  </DefaultPage>
-                </section>
-                <section class="pdf-item default-page">
-                  <DefaultPage :month="month.month">
-                    <AreaReportPage
-                      :living-areas="product.mediaReport.livingAreas"
-                      :working-areas="product.mediaReport.workingAreas"
-                      :top-living-areas="product.mediaReport.topLivingAreas"
-                      :top-working-areas="product.mediaReport.topWorkingAreas"
-                    />
-                  </DefaultPage>
-                </section>
+                <template v-for="(aud, audIndex) in product.mediaReport.auds">
+                  <section class="pdf-item default-page">
+                    <DefaultPage :month="month.month">
+                      <ChartReportPage
+                        :media-report="aud.mediaReport"
+                        :visiting-frequency="aud.visitingFrequency"
+                        :visiting-frequency-chart-data="aud.visitingFrequencyChartData"
+                        :ages="aud.ages"
+                        :average-dwell-times="aud.averageDwellTimes"
+                        :average-dwell-times-chart-data="aud.averageDwellTimesChartData"
+                        :purchasing-powers="aud.purchasingPowers"
+                        :purchasing-powers-chart-data="aud.purchasingPowersChartData"
+                        :visitor-types="aud.visitorTypes"
+                        :interests="aud.interests"
+                        :user="iframeObject.user.contact"
+                      />
+                    </DefaultPage>
+                  </section>
+                  <section class="pdf-item default-page">
+                    <DefaultPage :month="month.month">
+                      <AreaReportPage
+                        :living-areas="aud.livingAreas"
+                        :working-areas="aud.workingAreas"
+                        :top-living-areas="aud.topLivingAreas"
+                        :top-working-areas="aud.topWorkingAreas"
+                      />
+                    </DefaultPage>
+                  </section>
+                </template>
               </template>
             </template>
         </template>
