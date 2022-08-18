@@ -197,7 +197,7 @@ export default {
       const pages = Array.from(parentElement.children)
       this.totalGeneratingStep = pages.length
 
-      const productName = this.iframeObject.productsGroupedByMonth[0]?.products[0]?.mediaReport?.auds[0]?.mediaReport?.Network_name__c.replace('.', '_');
+      const productName = this.iframeObject.productsGroupedByMonth[0]?.products[0]?.mediaReport?.auds[0]?.mediaReport?.Network_name__c.replaceAll('.', '_');
       const formattedMonth = moment(`01 ${this.iframeObject.productsGroupedByMonth[0]?.month}`).format('YYYYMM');
       var opt = {
         filename: `Magnetic_${productName}_${formattedMonth}`,
