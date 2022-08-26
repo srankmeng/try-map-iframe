@@ -96,41 +96,13 @@
       </ReportCard>
     </GridColumn>
     <GridColumn isColumn6 class="is-report-chart-secondary">
-      <ReportCard heading="Visiting frequency">
-        <Grid isGutter5 isGutterVertical5>
-          <GridColumn isColumn5 class="is-report-chart-secondary">
-            <Grid isGutterVertical10>
-              <GridColumn isColumn12 class="pb-2">
-                <ChartReportLegend isBlue6 :label="'Occasional visitor'" :subLabel="'(1-2 days/month)'" :percent="visitingFrequency[0]" />
-              </GridColumn>
-              <GridColumn isColumn12 class="pb-2">
-                <ChartReportLegend isBlue5 :label="'Light visiting'" :subLabel="'(3-8 days/month)'" :percent="visitingFrequency[1]" />
-              </GridColumn>
-              <GridColumn isColumn12 class="pb-2">
-                <ChartReportLegend isBlue3 :label="'Medium visiting'" :subLabel="'(9-14 days/month)'" :percent="visitingFrequency[2]" />
-              </GridColumn>
-              <GridColumn isColumn12 class="pb-2">
-                <ChartReportLegend isBlue2 :label="'Heavy visiting'" :subLabel="'(15+ days/month)'" :percent="visitingFrequency[3]" />
-              </GridColumn>
-            </Grid>
-          </GridColumn>
-          <GridColumn isColumn5 isGrow class="is-report-chart-secondary">
-            <div class="detail-section is-chart-visiting-frequency">
-              <!-- <img v-if="visitingFrequencyChartImage" style="width: 200px;" :src="visitingFrequencyChartImage" alt=""> -->
-              <!-- <Chart isVisitingFrequency>
-                <ChartVisitingFrequencyReport
-                  :chart-data="visitingFrequencyChartData" style="height: 120px;margin-top: -40px"
-                  @chartRendered="visitingFrequencyChartImage = $event"
-                />
-              </Chart> -->
-              <Chart isVisitingFrequency>
-                <ChartVisitingFrequencyReport
-                  :chart-data="visitingFrequencyChartData" style="height: 120px;margin-top: -40px"
-                />
-              </Chart>
-            </div>
-          </GridColumn>
-        </Grid>
+      <ReportCard heading="Age">
+        <ChartReportAge :ages="ages" />
+      </ReportCard>
+      <ReportCard heading="Audience Interest" style="margin-top:15px">
+        <ChartReportInterest
+          :interests="interests"
+        />
       </ReportCard>
     </GridColumn>
     <GridColumn isColumn6 class="is-report-chart-secondary">
@@ -167,34 +139,7 @@
           </GridColumn>
         </Grid>
       </ReportCard>
-    </GridColumn>
-    <GridColumn isColumn6 class="is-report-chart-secondary">
-      <ReportCard heading="Age">
-        <ChartReportAge :ages="ages" />
-      </ReportCard>
-      <ReportCard heading="Location Type" style="margin-top:15px">
-        <div>
-          <div class="flex justify-center">
-            <ChartReportVisitingType
-              class="w-5/6"
-              style="margin-top: 16px"
-              :percentPasserBy="visitorTypes[0]"
-              :percentWork="visitorTypes[1]"
-              :percentHome="visitorTypes[2]"
-            />
-          </div>
-          <Report isLegend style="margin-top: 31px;">
-            <div class="report-lists is-legend flex">
-              <div class="pb-2 mr-3"><ChartReportLegend isBlue1 :label="'Passer-by'" /></div>
-              <div class="pb-2 mr-3"><ChartReportLegend isOrange2 :label="'Work location'" /></div>
-              <div class="pb-2"><ChartReportLegend isPurple1 :label="'Home location'" /></div>
-            </div>
-          </Report>
-        </div>
-      </ReportCard>
-    </GridColumn>
-    <GridColumn isColumn6 class="is-report-chart-secondary">
-      <ReportCard heading="Telecom Spending">
+      <ReportCard class="mt-4" heading="Telecom Spending">
         <Grid isGutter5 isGutterVertical5>
           <GridColumn isColumn5 class="is-report-chart-secondary">
             <Report isLegend>
@@ -215,10 +160,41 @@
           </GridColumn>
         </Grid>
       </ReportCard>
-      <ReportCard heading="Audience Interest" style="margin-top:15px">
-        <ChartReportInterest
-          :interests="interests"
-        />
+      <ReportCard class="mt-4" heading="Visiting frequency">
+        <Grid isGutter5 isGutterVertical5>
+          <GridColumn isColumn5 class="is-report-chart-secondary">
+            <Grid isGutterVertical10>
+              <GridColumn isColumn12 class="pb-2">
+                <ChartReportLegend isBlue6 :label="'Occasional visitor'" :subLabel="'(1-2 days/month)'" :percent="visitingFrequency[0]" />
+              </GridColumn>
+              <GridColumn isColumn12 class="pb-2">
+                <ChartReportLegend isBlue5 :label="'Light visiting'" :subLabel="'(3-8 days/month)'" :percent="visitingFrequency[1]" />
+              </GridColumn>
+              <GridColumn isColumn12 class="pb-2">
+                <ChartReportLegend isBlue3 :label="'Medium visiting'" :subLabel="'(9-14 days/month)'" :percent="visitingFrequency[2]" />
+              </GridColumn>
+              <GridColumn isColumn12 class="pb-2">
+                <ChartReportLegend isBlue2 :label="'Heavy visiting'" :subLabel="'(15+ days/month)'" :percent="visitingFrequency[3]" />
+              </GridColumn>
+            </Grid>
+          </GridColumn>
+          <GridColumn isColumn5 isGrow class="is-report-chart-secondary">
+            <div class="detail-section is-chart-visiting-frequency">
+              <!-- <img v-if="visitingFrequencyChartImage" style="width: 200px;" :src="visitingFrequencyChartImage" alt=""> -->
+              <!-- <Chart isVisitingFrequency>
+                <ChartVisitingFrequencyReport
+                  :chart-data="visitingFrequencyChartData" style="height: 120px;margin-top: -40px"
+                  @chartRendered="visitingFrequencyChartImage = $event"
+                />
+              </Chart> -->
+              <Chart isVisitingFrequency>
+                <ChartVisitingFrequencyReport
+                  :chart-data="visitingFrequencyChartData" style="height: 120px;margin-top: -40px"
+                />
+              </Chart>
+            </div>
+          </GridColumn>
+        </Grid>
       </ReportCard>
     </GridColumn>
   </Grid>

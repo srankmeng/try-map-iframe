@@ -23,7 +23,8 @@
                 <template v-for="(aud, audIndex) in product.mediaReport.auds">
                   <section class="pdf-item default-page">
                     <DefaultPage :month="month.month">
-                      <ChartReportPage
+                      <NewLayoutChartReportPage
+                        v-if="aud.isNewReportLayout"
                         :media-report="aud.mediaReport"
                         :visiting-frequency="aud.visitingFrequency"
                         :visiting-frequency-chart-data="aud.visitingFrequencyChartData"
@@ -34,6 +35,22 @@
                         :purchasing-powers-chart-data="aud.purchasingPowersChartData"
                         :visitor-types="aud.visitorTypes"
                         :interests="aud.interests"
+                        :isNewReportLayout="aud.isNewReportLayout"
+                        :user="iframeObject.user.contact"
+                      />
+                      <ChartReportPage
+                        v-else
+                        :media-report="aud.mediaReport"
+                        :visiting-frequency="aud.visitingFrequency"
+                        :visiting-frequency-chart-data="aud.visitingFrequencyChartData"
+                        :ages="aud.ages"
+                        :average-dwell-times="aud.averageDwellTimes"
+                        :average-dwell-times-chart-data="aud.averageDwellTimesChartData"
+                        :purchasing-powers="aud.purchasingPowers"
+                        :purchasing-powers-chart-data="aud.purchasingPowersChartData"
+                        :visitor-types="aud.visitorTypes"
+                        :interests="aud.interests"
+                        :isNewReportLayout="aud.isNewReportLayout"
                         :user="iframeObject.user.contact"
                       />
                     </DefaultPage>
