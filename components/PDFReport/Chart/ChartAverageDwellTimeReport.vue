@@ -1,6 +1,5 @@
 <script>
   import { Doughnut, mixins } from "vue-chartjs"
-  import ChartDataLabels from 'chartjs-plugin-labels';
 
   export default {
     name: "ChartAverageDwellTimeReport",
@@ -45,7 +44,7 @@
       this.gradient6.addColorStop(0, 'rgba(122, 89, 191, 1)');
       this.gradient6.addColorStop(1, 'rgba(159, 130, 221, 1)');
 
-      this.addPlugin(ChartDataLabels);
+      // this.addPlugin(ChartDataLabels);
       this.renderChart(
         // data
         {
@@ -67,18 +66,37 @@
         // options
         {
           plugins: {
-            labels: {
-              position: 'outside',
-              render: (args) => {
-                return `${args.value}%`;
-              },
-              fontStyle: 'bold',
-              fontSize: 9,
-              outsidePadding: 30,
-              fontColor: '#002865',
-              textMargin: 4,
-              fontFamily: "Montserrat, Kanit"
-            }
+            // labels: {
+            //   position: 'outside',
+            //   render: (args) => {
+            //     return `${args.value}%`;
+            //   },
+            //   fontStyle: 'bold',
+            //   fontSize: 9,
+            //   outsidePadding: 26,
+            //   fontColor: '#002865',
+            //   textMargin: 4,
+            //   fontFamily: "Montserrat, Kanit"
+            // }
+            outlabels: {
+                text: (context) => {
+                  const index = context.dataIndex;
+                  const value = context.dataset.data[index];
+                  return `${value}%`;
+                },
+                color: '#002865',
+                backgroundColor: null,
+                stretch: 10,
+                font: {
+                    resizable: true,
+                    minSize: 10,
+                    maxSize: 10,
+                    family: "Montserrat, Kanit",
+                    weight: "bold",
+                },
+                lineWidth: 1,
+                padding: 0,
+            },
           },
           rotation: (-0.5 * Math.PI) - (-120/180 * Math.PI),
           devicePixelRatio: 2,
@@ -86,7 +104,8 @@
           layout: {
             margin: {
                 top: -20,
-            }
+            },
+            padding: 50
           },
           responsive: true,
           // maintainAspectRatio: false,

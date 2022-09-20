@@ -55,7 +55,7 @@
               </div>
             </div>
           </div>
-          <div class="flex px-40 mt-3">
+          <div class="flex px-40 mt-3" :class="{ 'opacity-0': !mediaReport.RatingBKK__c && !mediaReport.RatingUPC__c && !mediaReport.RatingNTW__c }">
           <!-- <div class="flex px-40 mt-3"> -->
             <div class="flex flex-col items-center">
               <img class="w-10" :src="`${$path.static}/images/icons/gauge-icon.png`" alt="Gauge-Icon" />

@@ -1,6 +1,5 @@
 <script>
   import { Doughnut, mixins } from "vue-chartjs"
-  import ChartDataLabels from 'chartjs-plugin-labels';
 
   export default {
     name: "ChartPurchasingPowerReport",
@@ -37,7 +36,7 @@
       this.gradient4.addColorStop(0, 'rgba(254, 227, 155, 1)');
       this.gradient4.addColorStop(1, 'rgba(255, 218, 120, 1)');
 
-      this.addPlugin(ChartDataLabels);
+      // this.addPlugin(ChartDataLabels);
       this.renderChart(
         // data
         {
@@ -57,24 +56,44 @@
         // options
         {
           plugins: {
-            labels: {
-              position: 'outside',
-              render: (args) => {
-                return `${args.value}%`;
-              },
-              fontStyle: 'bold',
-              fontSize: 9,
-              outsidePadding: 30,
-              fontColor: '#002865',
-              textMargin: 4,
-              fontFamily: "Montserrat, Kanit"
-            }
+            // labels: {
+            //   position: 'outside',
+            //   render: (args) => {
+            //     return `${args.value}%`;
+            //   },
+            //   fontStyle: 'bold',
+            //   fontSize: 9,
+            //   outsidePadding: 26,
+            //   fontColor: '#002865',
+            //   textMargin: 4,
+            //   fontFamily: "Montserrat, Kanit"
+            // }
+            outlabels: {
+                text: (context) => {
+                  const index = context.dataIndex;
+                  const value = context.dataset.data[index];
+                  return `${value}%`;
+                },
+                color: '#002865',
+                backgroundColor: null,
+                stretch: 10,
+                font: {
+                    resizable: true,
+                    minSize: 10,
+                    maxSize: 10,
+                    family: "Montserrat, Kanit",
+                    weight: "bold",
+                },
+                lineWidth: 1,
+                padding: 0,
+            },
           },
           aspectRatio: 1,
           layout: {
             margin: {
                 top: -20,
-            }
+            },
+            padding: 50,
           },
           devicePixelRatio: 2,
           responsive: true,

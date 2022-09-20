@@ -1,6 +1,55 @@
+<!-- <template>
+<div id="chart-wrapper">
+    <canvas id="outlabeledChart"></canvas>
+</div>
+</template>
+<script>
+  import 'chartjs-plugin-piechart-outlabels'
+
+  export default {
+    mounted() {
+      var chart = new Chart('outlabeledChart', {
+        type: 'outlabeledPie',
+        data: {
+            labels: [
+                'ONE',
+                'TWO',
+                'THREE',
+                'FOUR',
+            ],
+            datasets: [{
+                backgroundColor: [
+                    '#FF3784',
+                    '#36A2EB',
+                    '#4BC0C0',
+                    '#F77825',
+                ],
+                data: [7, 8, 9, 10]
+            }]
+        },
+        options: {
+            zoomOutPercentage: 55, // makes chart 40% smaller (50% by default, if the preoprty is undefined)
+            plugins: {
+                legend: false,
+                outlabels: {
+                    text: '%l %p',
+                    color: 'white',
+                    stretch: 45,
+                    font: {
+                        resizable: true,
+                        minSize: 12,
+                        maxSize: 18
+                    }
+                }
+            }
+        }
+    });
+    },
+  }
+</script> -->
 <script>
   import { Doughnut, mixins } from "vue-chartjs"
-  import ChartDataLabels from 'chartjs-plugin-labels';
+  import 'chartjs-plugin-piechart-outlabels'
 
   export default {
     name: "ChartVisitingFrequencyReport",
@@ -37,7 +86,7 @@
       this.gradient4.addColorStop(0, 'rgba(65, 140, 255, 1)');
       this.gradient4.addColorStop(1, 'rgba(0, 80, 203, 1)');
 
-      this.addPlugin(ChartDataLabels);
+      // this.addPlugin(ChartDataLabels);
       this.renderChart(
         // data
         {
@@ -57,16 +106,39 @@
         // options
         {
           plugins: {
-            labels: {
-              position: 'outside',
-              render: (args) => {
-                return `${args.value}%`;
-              },
-              fontStyle: 'bold',
-              fontSize: 9,
-              outsidePadding: 30,
-              fontColor: '#002865',
-              fontFamily: "Montserrat, Kanit"
+            // display: false,
+            // labels: {
+            //   // overlap: false,
+            //   position: 'outside',
+            //   render: (args) => {
+            //     return `${args.value}%`;
+            //   },
+            //   fontStyle: 'bold',
+            //   fontSize: 9,
+            //   outsidePadding: 26,
+            //   fontColor: '#002865',
+            //   fontFamily: "Montserrat, Kanit",
+            //   display: 'auto',
+            // },
+            outlabels: {
+                display: true,
+                text: (context) => {
+                  const index = context.dataIndex;
+                  const value = context.dataset.data[index];
+                  return `${value}%`;
+                },
+                color: '#002865',
+                backgroundColor: null,
+                stretch: 4,
+                font: {
+                    resizable: true,
+                    minSize: 10,
+                    maxSize: 10,
+                    family: "Montserrat, Kanit",
+                    weight: "bold",
+                },
+                lineWidth: 1,
+                padding: 0,
             }
           },
           rotation: (-0.5 * Math.PI) - (-120/180 * Math.PI),
@@ -74,7 +146,8 @@
           layout: {
             margin: {
                 top: -20,
-            }
+            },
+            padding: 50
           },
           devicePixelRatio: 2,
           responsive: true,
