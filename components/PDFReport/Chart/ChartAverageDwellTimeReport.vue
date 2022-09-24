@@ -1,4 +1,88 @@
+<template>
+  <div class="chartCard">
+    <div v-if="chartImage">
+      <img :src="chartImage" alt="">
+    </div>
+    <div v-else style="height: 120px;" :id="pieChartKey"></div>
+  </div>
+</template>
+
 <script>
+
+import { report } from '~/helpers/report'
+export default {
+  props: ['chartData', 'chartKey'],
+  data() {
+    return {
+      chartImage: null,
+      pieChartKey: null,
+      // pieSeries: null,
+      // chart: null,
+      chart: null,
+    }
+  },
+  created() {
+    this.pieChartKey = `${this.chartKey}DwellTime`
+
+    this.unsubscribe = this.$store.subscribe((mutation, state) => {
+      if (mutation.type == 'report/generateChartImage') {
+        const options = this.chart.chart.exporting.getFormatOptions("jpg");
+        options.scale = 5;
+
+        this.chart.pieSeries.exporting.setFormatOptions("jpg", options);
+        this.chart.pieSeries.exporting.getImage("jpg").then((data) => {
+          console.log('generate image done')
+          this.$store.commit('report/chartImageGenerated')
+          this.chartImage = data
+        })
+      }
+    })
+  },
+  beforeDestroy() {
+    this.unsubscribe()
+  },
+  async mounted() {
+    this.chart = report.createPieChart(this.pieChartKey, this.chartData)
+    // // Create chart instance
+    // this.chart = am4core.create(this.pieChartKey, am4charts.PieChart);
+
+    // this.chart.width = am4core.percent(100);
+    // this.chart.height = am4core.percent(100);
+
+    // this.chart.seriesContainer.align = "center";
+    // // this.chart.posi
+    // // Add data
+    // this.chart.data = this.chartData;
+
+    // const colors = [
+    //   am4core.color('#f6dc4c'),
+    //   am4core.color('#dd5dc1'),
+    //   am4core.color('#fa9c4c'),
+    //   am4core.color('#00b2f6'),
+    //   am4core.color('#76c64c'),
+    //   am4core.color('#7a59bf'),
+    // ];
+
+    // // Add and configure Series
+    // this.pieSeries = this.chart.series.push(new am4charts.PieSeries());
+    // this.pieSeries.colors.list = colors;
+    // this.pieSeries.dataFields.value = "value";
+    // this.pieSeries.dataFields.category = "label";
+    // this.pieSeries.innerRadius = am4core.percent(60);
+    // // this.pieSeries.labels.template.text = "{value.value}%";
+    // this.pieSeries.labels.template.adapter.add("text", (text, target) =>  target.dataItem.values.value.percent > 0 ? "{value.value}%" : "");
+    // this.pieSeries.labels.template.fontSize = 10;
+    // this.pieSeries.labels.template.fontFamily = 'Kanit';
+    // this.pieSeries.labels.template.fontWeight = 'bold';
+    // this.pieSeries.labels.template.maxWidth = 130;
+    // this.pieSeries.labels.template.wrap = true;
+    // this.pieSeries.labels.template.adapter.add('fill', function (color, target) {
+    //   return am4core.color(colors[target.dataItem.index]);
+    // })
+  },
+  }
+</script>
+<!-- <script>
   import { Doughnut, mixins } from "vue-chartjs"
 
   export default {
@@ -105,10 +189,10 @@
             margin: {
                 top: -20,
             },
-            padding: 50
+            padding: 0
           },
           responsive: true,
-          // maintainAspectRatio: false,
+          maintainAspectRatio: false,
           legend: {
             display: false,
           },
@@ -125,4 +209,4 @@
       )
     }
   };
-</script>
+</script> -->

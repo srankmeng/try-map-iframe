@@ -106,61 +106,7 @@
       </ReportCard>
     </GridColumn>
     <GridColumn isColumn6 class="is-report-chart-secondary">
-      <ReportCard heading="Average dwell time">
-        <Grid isGutter5 isGutterVertical5>
-          <GridColumn isColumn5 class="is-report-chart-secondary">
-            <Grid isGutter20 isGutterVertical10>
-              <GridColumn isColumn12 class="pb-2">
-                <ChartReportLegend isOrange6 :label="'1 - 5 min/day'" :percent="averageDwellTimes[0]" />
-              </GridColumn>
-              <GridColumn isColumn12 class="pb-2">
-                <ChartReportLegend isPurple2 :label="'6 - 10 min/day'" :percent="averageDwellTimes[1]" />
-              </GridColumn>
-              <GridColumn isColumn12 class="pb-2">
-                <ChartReportLegend isOrange4 :label="'11 - 15 min/day'" :percent="averageDwellTimes[2]" />
-              </GridColumn>
-              <GridColumn isColumn12 class="pb-2">
-                <ChartReportLegend isBlue4 :label="'16 - 30 min/day'" :percent="averageDwellTimes[3]" />
-              </GridColumn>
-              <GridColumn isColumn12 class="pb-2">
-                <ChartReportLegend isGreen1 :label="'31 - 60 min/day'" :percent="averageDwellTimes[4]" />
-              </GridColumn>
-              <GridColumn isColumn12 class="pb-2">
-                <ChartReportLegend isPurple3 :label="'>60 min/day'" :percent="averageDwellTimes[5]" />
-              </GridColumn>
-            </Grid>
-          </GridColumn>
-          <GridColumn isColumn5 isGrow class="is-report-chart-secondary">
-            <div class="detail-section is-chart-average-dwell-time">
-              <Chart isAverageDwellTime>
-                <ChartAverageDwellTimeReport :chartData="averageDwellTimesChartData" style="height: 150px;margin-top: -40px" />
-              </Chart>
-            </div>
-          </GridColumn>
-        </Grid>
-      </ReportCard>
-      <ReportCard class="mt-4" heading="Telecom Spending">
-        <Grid isGutter5 isGutterVertical5>
-          <GridColumn isColumn5 class="is-report-chart-secondary">
-            <Report isLegend>
-              <div class="report-lists is-legend">
-                <div class="pb-2"><ChartReportLegend isOrange1 :label="'Tier A'" :subLabel="'(High spender) '" :percent="purchasingPowers[0]" /></div>
-                <div class="pb-2"><ChartReportLegend isOrange3 :label="'Tier B'" :subLabel="'(Medium spender)'" :percent="purchasingPowers[1]" /></div>
-                <div class="pb-2"><ChartReportLegend isOrange5 :label="'Tier C'" :subLabel="'(Medium-Low spender)'" :percent="purchasingPowers[2]" /></div>
-                <div class="pb-2"><ChartReportLegend isOrange7 :label="'Tier D'" :subLabel="'(Low spender)'" :percent="purchasingPowers[3]" /></div>
-              </div>
-            </Report>
-          </GridColumn>
-          <GridColumn isColumn5 isGrow class="is-report-chart-secondary">
-            <div class="detail-section is-chart-purchasing-power">
-              <Chart isPurchasingPower>
-                <ChartPurchasingPowerReport :chart-data="purchasingPowersChartData" style="height: 150px;margin-top: -30px" />
-              </Chart>
-            </div>
-          </GridColumn>
-        </Grid>
-      </ReportCard>
-      <ReportCard class="mt-4" heading="Visiting frequency">
+      <ReportCard heading="Visiting frequency">
         <Grid isGutter5 isGutterVertical5>
           <GridColumn isColumn5 class="is-report-chart-secondary">
             <Grid isGutterVertical10>
@@ -188,14 +134,67 @@
                 />
               </Chart> -->
               <Chart isVisitingFrequency>
-                <ChartVisitingFrequencyReport
-                  :chart-data="visitingFrequencyChartData" style="height: 120px;margin-top: -40px"
-                />
+                <ChartVisitingFrequencyReport :chartKey="chartKey" :chartData="amChartVisitingFrequency"/>
               </Chart>
             </div>
           </GridColumn>
         </Grid>
       </ReportCard>
+      <ReportCard class="mt-4" heading="Average dwell time">
+        <Grid isGutterVertical5>
+          <GridColumn isColumn4 class="is-report-chart-secondary">
+            <Grid isGutterVertical10>
+              <GridColumn isColumn12 class="pb-2">
+                <ChartReportLegend isOrange6 :label="'1 - 5 min/day'" :percent="averageDwellTimes[0]" />
+              </GridColumn>
+              <GridColumn isColumn12 class="pb-2">
+                <ChartReportLegend isPurple2 :label="'6 - 10 min/day'" :percent="averageDwellTimes[1]" />
+              </GridColumn>
+              <GridColumn isColumn12 class="pb-2">
+                <ChartReportLegend isOrange4 :label="'11 - 15 min/day'" :percent="averageDwellTimes[2]" />
+              </GridColumn>
+              <GridColumn isColumn12 class="pb-2">
+                <ChartReportLegend isBlue4 :label="'16 - 30 min/day'" :percent="averageDwellTimes[3]" />
+              </GridColumn>
+              <GridColumn isColumn12 class="pb-2">
+                <ChartReportLegend isGreen1 :label="'31 - 60 min/day'" :percent="averageDwellTimes[4]" />
+              </GridColumn>
+              <GridColumn isColumn12 class="pb-2">
+                <ChartReportLegend isPurple3 :label="'>60 min/day'" :percent="averageDwellTimes[5]" />
+              </GridColumn>
+            </Grid>
+          </GridColumn>
+          <GridColumn isColumn6 isGrow class="is-report-chart-secondary">
+            <div class="detail-section is-chart-average-dwell-time">
+              <Chart isAverageDwellTime>
+                <ChartAverageDwellTimeReport :chartKey="chartKey" :chartData="amChartAverageDwellTimes" />
+              </Chart>
+            </div>
+          </GridColumn>
+        </Grid>
+      </ReportCard>
+      <ReportCard class="mt-4" heading="Telecom Spending">
+        <Grid isGutter5 isGutterVertical5>
+          <GridColumn isColumn5 class="is-report-chart-secondary">
+            <Report isLegend>
+              <div class="report-lists is-legend">
+                <div class="pb-2"><ChartReportLegend isOrange1 :label="'Tier A'" :subLabel="'(High spender) '" :percent="purchasingPowers[0]" /></div>
+                <div class="pb-2"><ChartReportLegend isOrange3 :label="'Tier B'" :subLabel="'(Medium spender)'" :percent="purchasingPowers[1]" /></div>
+                <div class="pb-2"><ChartReportLegend isOrange5 :label="'Tier C'" :subLabel="'(Medium-Low spender)'" :percent="purchasingPowers[2]" /></div>
+                <div class="pb-2"><ChartReportLegend isOrange7 :label="'Tier D'" :subLabel="'(Low spender)'" :percent="purchasingPowers[3]" /></div>
+              </div>
+            </Report>
+          </GridColumn>
+          <GridColumn isColumn5 isGrow class="is-report-chart-secondary">
+            <div class="detail-section is-chart-purchasing-power">
+              <Chart isPurchasingPower>
+                <ChartPurchasingPowerReport :chartKey="chartKey" :chartData="amChartPurchasingPowers"/>
+              </Chart>
+            </div>
+          </GridColumn>
+        </Grid>
+      </ReportCard>
+
     </GridColumn>
   </Grid>
 </template>
@@ -230,6 +229,15 @@ export default {
     averageDwellTimesChartData: {
       type: Object,
       default: null,
+    },
+    amChartAverageDwellTimes: {
+      type: Array,
+    },
+    amChartPurchasingPowers: {
+      type: Array,
+    },
+    amChartVisitingFrequency: {
+      type: Array,
     },
     purchasingPowers: {
       type: Array,
@@ -275,6 +283,9 @@ export default {
     isNewReportLayout: {
       type: Boolean,
       default: false,
+    },
+    chartKey: {
+      type: String,
     },
   },
   data() {

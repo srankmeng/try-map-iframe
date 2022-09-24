@@ -124,9 +124,7 @@
                 />
               </Chart> -->
               <Chart isVisitingFrequency>
-                <ChartVisitingFrequencyReport
-                  :chart-data="visitingFrequencyChartData" style="height: 120px;margin-top: -40px"
-                />
+                <ChartVisitingFrequencyReport :chartKey="chartKey" :chartData="amChartVisitingFrequency"/>
               </Chart>
             </div>
           </GridColumn>
@@ -135,9 +133,9 @@
     </GridColumn>
     <GridColumn isColumn6 class="is-report-chart-secondary">
       <ReportCard heading="Average dwell time">
-        <Grid isGutter5 isGutterVertical5>
-          <GridColumn isColumn5 class="is-report-chart-secondary">
-            <Grid isGutter20 isGutterVertical10>
+        <Grid isGutterVertical5>
+          <GridColumn isColumn4 class="is-report-chart-secondary">
+            <Grid isGutterVertical10>
               <GridColumn isColumn12 class="pb-2">
                 <ChartReportLegend isOrange6 :label="'1 - 5 min/day'" :percent="averageDwellTimes[0]" />
               </GridColumn>
@@ -158,10 +156,10 @@
               </GridColumn>
             </Grid>
           </GridColumn>
-          <GridColumn isColumn5 isGrow class="is-report-chart-secondary">
+          <GridColumn isColumn6 isGrow class="is-report-chart-secondary">
             <div class="detail-section is-chart-average-dwell-time">
               <Chart isAverageDwellTime>
-                <ChartAverageDwellTimeReport :chartData="averageDwellTimesChartData" style="height: 150px;margin-top: -40px" />
+                <ChartAverageDwellTimeReport :chartKey="chartKey" :chartData="amChartAverageDwellTimes" />
               </Chart>
             </div>
           </GridColumn>
@@ -209,7 +207,7 @@
           <GridColumn isColumn5 isGrow class="is-report-chart-secondary">
             <div class="detail-section is-chart-purchasing-power">
               <Chart isPurchasingPower>
-                <ChartPurchasingPowerReport :chart-data="purchasingPowersChartData" style="height: 150px;margin-top: -30px" />
+                <ChartPurchasingPowerReport :chartKey="chartKey" :chartData="amChartPurchasingPowers"/>
               </Chart>
             </div>
           </GridColumn>
@@ -255,6 +253,15 @@ export default {
       type: Object,
       default: null,
     },
+    amChartAverageDwellTimes: {
+      type: Array,
+    },
+    amChartPurchasingPowers: {
+      type: Array,
+    },
+    amChartVisitingFrequency: {
+      type: Array,
+    },
     purchasingPowers: {
       type: Array,
       default() {
@@ -299,6 +306,9 @@ export default {
     isNewReportLayout: {
       type: Boolean,
       default: false,
+    },
+    chartKey: {
+      type: String,
     },
   },
   data() {

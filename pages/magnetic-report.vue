@@ -37,6 +37,10 @@
                         :interests="aud.interests"
                         :isNewReportLayout="aud.isNewReportLayout"
                         :user="iframeObject.user.contact"
+                        :amChartAverageDwellTimes="aud.amChartAverageDwellTimes"
+                        :amChartVisitingFrequency="aud.amChartVisitingFrequency"
+                        :amChartPurchasingPowers="aud.amChartPurchasingPowers"
+                        :chartKey="`newlayout${monthIndex}${productIndex}${audIndex}`"
                       />
                       <ChartReportPage
                         v-else
@@ -52,6 +56,10 @@
                         :interests="aud.interests"
                         :isNewReportLayout="aud.isNewReportLayout"
                         :user="iframeObject.user.contact"
+                        :amChartAverageDwellTimes="aud.amChartAverageDwellTimes"
+                        :amChartVisitingFrequency="aud.amChartVisitingFrequency"
+                        :amChartPurchasingPowers="aud.amChartPurchasingPowers"
+                        :chartKey="`oldlayout${monthIndex}${productIndex}${audIndex}`"
                       />
                     </DefaultPage>
                   </section>
@@ -95,13 +103,19 @@ export default {
       unsubscribe: null,
     }
   },
-  created() {
-    this.unsubscribe = this.$store.subscribe((mutation, state) => {
+  async created() {
+    this.unsubscribe = this.$store.subscribe(async (mutation, state) => {
       if (mutation.type == 'report/mapLoaded') {
         if ((this.iframeObject.allProductCount * 2) == state.report.mapLoadedCount) {
           window.parent.postMessage({
             isReportReady: true
           }, '*');
+        }
+      }
+
+      if (mutation.type == 'report/chartImageGenerated') {
+        if ((this.iframeObject.allProductCount * 3) == state.report.imageGeneratedCount) {
+          await this.generateReport()
         }
       }
     })
@@ -198,6 +212,8 @@ export default {
       }, '*');
     },
     async downloadReport() {
+      this.generatingReport = true
+      this.$store.commit('report/generateChartImage')
       // const msg = JSON.stringify({
       //   isGenerateImage: true,
       // });
@@ -210,10 +226,10 @@ export default {
       //   })
       // }
 
-      await this.generateReport()
+      // await this.generateReport()
     },
     async generateReport () {
-      this.generatingReport = true
+      // this.generatingReport = true
       const parentElement = this.$refs.pdfContent
       const pages = Array.from(parentElement.children)
       this.totalGeneratingStep = pages.length
