@@ -17,11 +17,11 @@
         <tr v-for="(product, productIndex) in month.products" :key="productIndex">
           <td>{{ productIndex + 1 }}</td>
           <td>{{ product.product ? product.product.Type__c : null }}</td>
-          <td>{{ product.product ? product.product.Network_Name__c : null }}</td>
+          <td v-html="product.product ? product.product.Network_Name__c : null"></td>
           <td>{{ formatDates(product.date.start, product.date.end) }}</td>
           <!-- <td class="text-right">{{ product.mediaReport && product.mediaReport.mediaReport ? product.mediaReport.mediaReport.no_of_screens__c : null }}</td> -->
           <td>{{ product.mediaReport && product.mediaReport.auds.length > 0 ? $options.filters.currencyFormat(product.mediaReport.totalEyeball) : null }}</td>
-          <td>{{ product.mediaReport && product.mediaReport.auds.length > 0 ? $options.filters.currencyFormat(product.mediaReport.totalReach) : null }}</td>
+          <td>{{ product.mediaReport && product.mediaReport.auds.length > 0 ? $options.filters.currencyFormat(product.mediaReport.maxReach) : null }}</td>
         </tr>
       </tbody>
       <tfoot>
@@ -32,7 +32,7 @@
             </span>
           </td>
           <td class="text-md font-bold text-color-primary-1">{{ $options.filters.currencyFormat(month.totalEyeball) }}*</td>
-          <td class="text-md font-bold text-color-primary-1">{{ $options.filters.currencyFormat(month.totalReach) }}*</td>
+          <td class="text-md font-bold text-color-primary-1">{{ $options.filters.currencyFormat(month.maxReach) }}*</td>
         </tr>
       </tfoot>
     </table>
