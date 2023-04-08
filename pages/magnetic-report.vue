@@ -89,6 +89,7 @@
 <script>
 import html2pdf from 'html2pdf.js'
 import moment from 'moment'
+// import { reportObject } from '~/mock/report'
 
 export default {
   name: 'magnetic-report',
@@ -105,17 +106,27 @@ export default {
   },
   async created() {
     this.unsubscribe = this.$store.subscribe(async (mutation, state) => {
-      if (mutation.type == 'report/mapLoaded') {
-        if ((this.iframeObject.allProductCount * 2) == state.report.mapLoadedCount) {
-          window.parent.postMessage({
-            isReportReady: true
-          }, '*');
-        }
-      }
+      console.log('mutation.type', mutation.type);
+      // if (mutation.type == 'report/mapLoaded') {
+      //   console.log('report/mapLoaded', (this.iframeObject.allProductCount * 2), state.report.mapLoadedCount);
+      //   if ((this.iframeObject.allProductCount * 2) == state.report.mapLoadedCount) {
+      //     window.parent.postMessage({
+      //       isReportReady: true
+      //     }, '*');
+      //   }
+      // }
+
+      const selfReport = this
+      const reportScrollTime = this.iframeObject.allProductCount * 1000
 
       if (mutation.type == 'report/chartImageGenerated') {
+
         if ((this.iframeObject.allProductCount * 3) == state.report.imageGeneratedCount) {
-          await this.generateReport()
+          $('html, body').animate({ scrollTop: $(document).height() }, reportScrollTime).promise().then(async function () {
+            $(this).animate({ scrollTop: 0 }, reportScrollTime).promise().then(async function(){
+              await selfReport.generateReport()
+            });
+          })
         }
       }
     })
@@ -126,7 +137,11 @@ export default {
   async mounted() {
     const self = this
     this.$receiveMessage((e) => {
+      console.log('try-map-iframe', e.data);
+      // console.log('reportObject', reportObject);
+      // e.data.reportObject = reportObject
       if (e.data.reportObject) {
+      // if (reportObject) {
         console.log('reportObject', e.data.reportObject);
 
         self.iframeObject = e.data.reportObject;
@@ -187,6 +202,14 @@ export default {
             }
 
             $('.media-list-page').remove()
+
+            $('html, body').animate({ scrollTop: $(document).height() }, 2000).promise().then(async function () {
+              $(this).animate({ scrollTop: 0 }, 2000).promise().then(function(){
+                window.parent.postMessage({
+                  isReportReady: true
+                }, '*');
+              });
+            })
           })
         })
       }
